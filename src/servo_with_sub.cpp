@@ -1,5 +1,5 @@
 /*
-This program is used for testing the control of servo by publishing the angle between 0-188 degrees on a -
+This program is used for testing the control of servo by publishing the angle between 0-180 degrees on a -
 topic at the same time listening to the string coming from arduino board. This has been tested with Arduino-
 Uno board and Teensy LC board.
 */
