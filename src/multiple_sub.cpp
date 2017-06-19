@@ -1,3 +1,9 @@
+/*
+This program simply shows how to use multpiple subscribers and publshers to communicate with
+Arduino board. This has been tested with Arduino Uno board and Teensy LC board. This only 
+assembles simple examples provided on the official site into one.
+*/
+
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "std_msgs/Empty.h"
