@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   rosserial_arduino
   sensor_msgs
   std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -47,11 +48,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+ add_message_files(
+   FILES
+   pwm_signal.msg
+ )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -68,10 +68,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   sensor_msgs#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   sensor_msgs
+   std_msgs
+ )
 
 ###################################
 ## catkin specific configuration ##
@@ -85,7 +86,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ros_arduino_trial
-#  CATKIN_DEPENDS cv_bridge image_transport roscpp rosserial_arduino sensor_msgs std_msgs
+  CATKIN_DEPENDS cv_bridge image_transport roscpp rosserial_arduino sensor_msgs std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -109,10 +110,11 @@ include_directories(
 add_executable(ros_arduino_muliple_pub_sub src/multiple_sub.cpp)
 add_executable(ros_arduino_servo_with_sub src/servo_with_sub.cpp)
 add_executable(ros_arduino_pwm_with_sub src/pwm_with_sub.cpp)
+add_executable(ros_arduino_pwm_custom_message src/pwm_custom_message.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(ros_arduino_trial_node ros_arduino_trial_generate_messages_cpp)
+add_dependencies(ros_arduino_pwm_custom_message ros_arduino_trial_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(ros_arduino_muliple_pub_sub
@@ -122,6 +124,9 @@ target_link_libraries(ros_arduino_servo_with_sub
    ${catkin_LIBRARIES}
  )
 target_link_libraries(ros_arduino_pwm_with_sub
+   ${catkin_LIBRARIES}
+ )
+target_link_libraries(ros_arduino_pwm_custom_message
    ${catkin_LIBRARIES}
  )
 
