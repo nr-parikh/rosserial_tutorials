@@ -68,10 +68,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   sensor_msgs#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   sensor_msgs
+   std_msgs
+ )
 
 ###################################
 ## catkin specific configuration ##
@@ -109,10 +110,11 @@ include_directories(
 add_executable(ros_arduino_muliple_pub_sub src/multiple_sub.cpp)
 add_executable(ros_arduino_servo_with_sub src/servo_with_sub.cpp)
 add_executable(ros_arduino_pwm_with_sub src/pwm_with_sub.cpp)
+add_executable(ros_arduino_pwm_custom_message src/pwm_custom_message.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(ros_arduino_trial_node ros_arduino_trial_generate_messages_cpp)
+add_dependencies(ros_arduino_pwm_custom_message ros_arduino_trial_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(ros_arduino_muliple_pub_sub
@@ -122,6 +124,9 @@ target_link_libraries(ros_arduino_servo_with_sub
    ${catkin_LIBRARIES}
  )
 target_link_libraries(ros_arduino_pwm_with_sub
+   ${catkin_LIBRARIES}
+ )
+target_link_libraries(ros_arduino_pwm_custom_message
    ${catkin_LIBRARIES}
  )
 
