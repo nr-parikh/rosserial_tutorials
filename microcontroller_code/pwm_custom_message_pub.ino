@@ -12,7 +12,7 @@ ros::Publisher chatter("listener", &str_msg);
 char roco[] = "I am RoCo!";
 
 void pwm_cb(const ros_arduino_trial::pwm_signal& pwm_msg){
-  digitalWrite(dir_flag, pwm_msg.dir);
+  digitalWrite(dir_flag, (pwm_msg.dir ? 1: 0));
   analogWrite(pwm, pwm_msg.data);
 }
 
@@ -29,6 +29,9 @@ void setup() {
   nh.initNode();
   nh.subscribe(sub);
   nh.advertise(chatter);
+
+  digitalWrite(dir_flag, 0);
+  digitalWrite(pwm, 0);
 
 }
 
