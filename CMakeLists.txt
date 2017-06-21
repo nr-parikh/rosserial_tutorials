@@ -110,7 +110,8 @@ include_directories(
 add_executable(ros_arduino_muliple_pub_sub src/multiple_sub.cpp)
 add_executable(ros_arduino_servo_with_sub src/servo_with_sub.cpp)
 add_executable(ros_arduino_pwm_with_sub src/pwm_with_sub.cpp)
-add_executable(ros_arduino_pwm_custom_message src/pwm_custom_message.cpp)
+add_executable(ros_arduino_pwm_custom_message src/pwm_custom_message_sub.cpp)
+add_executable(ros_arduino_interrupt_blink src/interrupt_with_blink_sub.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -127,6 +128,9 @@ target_link_libraries(ros_arduino_pwm_with_sub
    ${catkin_LIBRARIES}
  )
 target_link_libraries(ros_arduino_pwm_custom_message
+   ${catkin_LIBRARIES}
+ )
+target_link_libraries(ros_arduino_interrupt_blink
    ${catkin_LIBRARIES}
  )
 

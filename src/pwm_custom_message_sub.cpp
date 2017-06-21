@@ -45,13 +45,16 @@ int main(int argc, char **argv)
 
   // NOTE: The value of PWM signal to be published depends on the motor-driver one is using.
 
-  for (int i=1; i<=10; i++){
-    if (i>5) signal.data = 1;
+  for (int i=1; i<=20; i++){
+    if (i>10) {
+      signal.dir = 1;
+    } else {
+      signal.dir = 0;
+    }
+    signal.data = 150;
     pwmPub.publish(signal);
     ros::spinOnce();
     loop_rate.sleep();
-    signal.data = signal.data + 20;
-    ROS_INFO("%d", i);
   }
 
   signal.dir = 0;
