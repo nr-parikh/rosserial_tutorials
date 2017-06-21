@@ -1,5 +1,0 @@
-#This is the message file for generating a custom message to control a DC
-#motor using MD10C R3 motor driver by Cytron technologies in Sign Magnitude 
-#mode.
-unint8 dir
-uint16 data
