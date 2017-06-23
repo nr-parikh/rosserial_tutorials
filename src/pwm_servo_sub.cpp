@@ -44,7 +44,7 @@ int main(int argc, char **argv)
   ros::Publisher servoPub = n.advertise<std_msgs::UInt8>("servo_angle", 1000);
   ros::Subscriber sub = n.subscribe("listener", 1000, chatterCallback);
 
-  ros::Rate loop_rate(5);
+  ros::Rate loop_rate(20);
 
   ros_arduino_trial::pwm_signal signal;
   std_msgs::UInt8 angle;
