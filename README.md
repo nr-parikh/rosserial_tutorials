@@ -40,33 +40,33 @@ While the library for Arduino boards works off the shelf, there is minor modific
 
 All the codes in this repository, have been tested on both Arduino Uno and TeensyLC board. The repository contains following examples:
 
-  * Hello World!
+  * **Hello World!**
     * Multiple publishers on the Arduino node with subscribers on the node running on workstation. This program toggles the LED on in the callback fucntion.
       * Arduino example: multiple_pub.ino
       * ROS node: ros_arduino_multiple_pub_sub
     
-  * Servo Control 
+  * **Servo Control** 
     * This is a very simple example which can be used to control a servo motor using ROS and Arduino. The example is same as it is available on the official site with additional publisher on the Arduino and corresponding subscriber on workstation.
       * Arduino example: servo_with_sub.ino
       * ROS node: ros_arduino_servo_with_sub
   
-  * PWM control of DC motor with standard message
+  * **PWM control of DC motor with standard message**
     * For Pulse Width Modulation, the motor driver being used becomes very important. Here, MD10C R3 motor driver has been used. Depending on the motor driver being used, the information needed to drive the motor changes and so does the information to be published from ROS. In this example, unsigned integers are being published to control the motor.
       * Arduino example: pwm_with_pub.ino
       * ROS node: ros_arduino_pwm_with_sub
   
-  * PWM control of DC motor with custom message
+  * **PWM control of DC motor with custom message**
     * In this example, the motor is being controlled again by MD10C driver but in Sign Magnitude mode. This mode requires two different variables and thus a custome message has been defined which carries all the information needed.
       * Arduino example: pwm_custom_message_pub.ino
       * ROS node: ros_arduino_pwm_custom_message
       * NOTE: When using custom messages after building the package, one needs to build Arduino libraries again in order to be able include the message type on Arduino.
         
-  * Hello World! with interrupts
+  * **Hello World! with interrupts**
     * This is another simple example which also considers interrupts in the loop.
       * Arduino example: interrupt_with_blink_pub.ino
       * ROS node: ros_arduino_interrupt_blink
   
-  * PWM and servo control
+  * **PWM and servo control**
     * This example extends the previously defined examples and combines them to control two motors simultaneously. PWM in this example is being done using a custom message as mentioned above.
       * Arduino example: pwm_servo_pub.ino
       * ROS node: ros_arduino_pwm_servo
