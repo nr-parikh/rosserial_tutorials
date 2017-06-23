@@ -35,3 +35,52 @@ Teensyduino is an Arduino IDE plugin for Teensy boards. It can be downloaded fro
 On Linux environment, udev rule file needs to be copied to `/etc/udev/rules.d`. The file can be in the repository inside *misc_files* folder, [here](https://github.com/nr-parikh/rosserial_testing/blob/master/misc_files/49-teensy.rules). To copy this file to the aforementioned location run the command `sudo cp ~/home/rosserial_testing/misc_files/49-teensy.rules /etc/udev/rules.d/`. This file gives non-root users the permission to access Teensy board.
 
 While the library for Arduino boards works off the shelf, there is minor modification in the file *ArduinoHardware.h* which needs to be done in order to be able to compile the Arduino code for Teensy boards. The file can be found in the *misc_files* folder of this repository. Replace the file generated in the folder *ros_lib* created earlier while building the ROS libraries for Arduino IDE with the one provided in the repository for Teensy boards.
+
+## Running the code
+
+All the codes in this repository, have been tested on both Arduino Uno and TeensyLC board. The repository contains following examples:
+
+  * Hello World!
+    * Multiple publishers on the Arduino node with subscribers on the node running on workstation. This program toggles the LED on in the callback fucntion.
+      * Arduino example: multiple_pub.ino
+      * ROS node: ros_arduino_multiple_pub_sub
+    
+  * Servo Control 
+    * This is a very simple example which can be used to control a servo motor using ROS and Arduino. The example is same as it is available on the official site with additional publisher on the Arduino and corresponding subscriber on workstation.
+      * Arduino example: servo_with_sub.ino
+      * ROS node: ros_arduino_servo_with_sub
+  
+  * PWM control of DC motor with standard message
+    * For Pulse Width Modulation, the motor driver being used becomes very important. Here, MD10C R3 motor driver has been used. Depending on the motor driver being used, the information needed to drive the motor changes and so does the information to be published from ROS. In this example, unsigned integers are being published to control the motor.
+      * Arduino example: pwm_with_pub.ino
+      * ROS node: ros_arduino_pwm_with_sub
+  
+  * PWM control of DC motor with custom message
+    * In this example, the motor is being controlled again by MD10C driver but in Sign Magnitude mode. This mode requires two different variables and thus a custome message has been defined which carries all the information needed.
+      * Arduino example: pwm_custom_message_pub.ino
+      * ROS node: ros_arduino_pwm_custom_message
+      * NOTE: When using custom messages after building the package, one needs to build Arduino libraries again in order to be able include the message type on Arduino.
+        
+  * Hello World! with interrupts
+    * This is another simple example which also considers interrupts in the loop.
+      * Arduino example: interrupt_with_blink_pub.ino
+      * ROS node: ros_arduino_interrupt_blink
+  
+  * PWM and servo control
+    * This example extends the previously defined examples and combines them to control two motors simultaneously. PWM in this example is being done using a custom message as mentioned above.
+      * Arduino example: pwm_servo_pub.ino
+      * ROS node: ros_arduino_pwm_servo
+    
+To run the code, please follow the instructions given below:
+  * `cd ~/home/<workspace>/src`
+  * `git clone https://github.com/nr-parikh/rosserial_tutorials.git`
+  * `cd ..`
+  * `catkin_make`
+  * `sudo rm -rf <path to Arduino libraries>/ros_lib`
+  * `rosrun rosserial_arduino make_libraries.py <path to Arduino libraries>`
+  * Connect Arduino Uno board to your computer and upload an example
+  * `roscore` 
+  * `rosrun rosserial_python serial_node.py _port:=<device> _baud:=<baud rate>`
+  * `rosrun ros_arduino_trial <example node>`
+  
+If the communication is not proper then the permission needs to be changed for the USB device. This can be done using `sudo chmod 666 <device>`.
