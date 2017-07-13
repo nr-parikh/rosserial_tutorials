@@ -12,7 +12,7 @@ This package is responsible to handle all the communication between Arduino and 
 
   1. Install from binaries. Run the following commands in the terminal in order to install the package.
       * `sudo apt-get install ros-<distro>-rosserial-arduino`
-      * `sudo apt0get install ros-<distro>-rosserial`
+      * `sudo apt-get install ros-<distro>-rosserial`
   2. In case the method mentioned above doesn't work, the package can be built from source as follows.
       * `cd <workspace/src>`
       * `git clone https://github.com/ros-drivers/rosserial.git`
