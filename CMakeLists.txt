@@ -107,7 +107,7 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-add_executable(ros_arduino_muliple_pub_sub src/multiple_sub.cpp)
+add_executable(ros_arduino_multiple_pub_sub src/multiple_sub.cpp)
 add_executable(ros_arduino_servo_with_sub src/servo_with_sub.cpp)
 add_executable(ros_arduino_pwm_with_sub src/pwm_with_sub.cpp)
 add_executable(ros_arduino_pwm_custom_message src/pwm_custom_message_sub.cpp)
